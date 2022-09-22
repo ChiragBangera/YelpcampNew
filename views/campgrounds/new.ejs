@@ -1,0 +1,55 @@
+<% layout('layout/boilerplate') %>
+<link rel="stylesheet" href="/styles/geodat.css">
+    <div class="row">
+        <h1 class="text-center">Add Campground</h1>
+        <div class="col-md-6 offset-md-3 mb-5">
+            <form action="/campgrounds" method="POST" class="validation" novalidate enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="fortitle" class="form-label">Camp Title</label>
+                    <input required type="text" class="form-control" id="fortitle" aria-describedby="emailHelp"
+                        name="title">
+                </div>
+                <div class="mb-3">
+                    <label for="forlocation" class="form-label">Location</label>
+                    <input required type="text" class="form-control" id="forlocation" name="location">
+                </div>
+                <div class="mb-3 custom-file">
+                    <label for="forimage" class="form-label">Images</label>
+                    <input required type="file" multiple class="form-control" id="forimage" name="image">
+                    <span class="form-file-text custom-file-label"></span>
+                </div>
+
+
+                <div class="d-flex align-items-center">   
+                    <div class="col-5">
+                      <label for="latitude" class="col-form-label">Latitude</label>
+                      <input required type="text" id="latitude" class="form-control" name="latitude">
+                      <span class="form-file-text custom-file-label"></span>
+                    </div>
+                      <div class="col-5 ms-auto">
+                        <label for="longitude" class="col-form-label">Longitude</label>
+                        <input required type="text" id="longitude" class="form-control" name="longitude">
+                        <span class="form-file-text custom-file-label"></span>
+                      </div>
+                </div>
+
+
+                <div class="mb-3">
+                    <label for="forprice" class="form-label">Campground Price</label>
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="addon-wrapping">&#8377</span>
+                    <input required type="number" class="form-control" placeholder="0.00" id="forprice" name="price">
+                  </div>
+                </div>
+                <div class="mb-3">
+                    <label for="fordescription" class="form-label">Description</label>
+                    <textarea required type="text" class="form-control" id="fordescription" name="description"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Add Camp</button>
+            </form>
+        <div class="mb-5">
+            <div id="map"></div>
+        </div>
+        </div>
+    </div>
+    <script src="/javascripts/geolatlong.js"></script>

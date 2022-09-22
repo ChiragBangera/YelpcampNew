@@ -1,0 +1,62 @@
+<% layout('layout/boilerplate') %> 
+<link rel="stylesheet" href="/styles/geodat.css">
+
+<div class="row">
+    <h1 class="text-center">Edit Campground</h1>
+    <div class="col-md-6 offset-md-3 mb-5">
+        <form enctype="multipart/form-data" novalidate action="/campgrounds/<%= findCamp._id %>?_method=PATCH" method="POST" class="validation">
+            <div class="mb-3">
+                <label for="fortitle" class="form-label">Camp Title</label>
+                <input required type="text" value="<%= findCamp.title %>" class="form-control" id="fortitle" aria-describedby="emailHelp"
+                    name="title">
+            </div>
+            <div class="mb-3">
+                <label for="forlocation" class="form-label">Location</label>
+                <input required type="text" value="<%= findCamp.location %>" class="form-control" id="forlocation" name="location">
+            </div>
+            <div class="mb-3">
+                <label for="forimage" class="form-label">Add Images</label>
+                <input type="file" multiple class="form-control" id="forimage" name="image">
+            </div>
+            <div class="d-flex align-items-center">   
+                <div class="col-5">
+                  <label for="latitude" class="col-form-label">Latitude</label>
+                  <input required type="text" id="latitude" class="form-control" value="<%=findCamp.latitude%>" name="latitude">
+                  <span class="form-file-text custom-file-label"></span>
+                </div>
+                  <div class="col-5 ms-auto">
+                    <label for="longitude" class="col-form-label">Longitude</label>
+                    <input required type="text" id="longitude" class="form-control" value="<%=findCamp.longitude%>" name="longitude">
+                    <span class="form-file-text custom-file-label"></span>
+                  </div>
+            </div>
+            <div class="mb-3">
+                <label for="forprice" class="form-label">Campground Price</label>
+            <div class="input-group flex-nowrap">
+                <span class="input-group-text" id="addon-wrapping">&#8377</span>
+                <input required type="number" value="<%= findCamp.price %>" class="form-control" placeholder="0.00" id="forprice" name="price">
+              </div>
+            </div>
+            <div class="mb-3">
+                <label for="fordescription" class="form-label">Description</label>
+                <textarea required type="text" class="form-control" id="fordescription" name="description">
+                    <%= findCamp.description %>
+                </textarea>
+            </div>
+            <div class="mb-3">
+                <%findCamp.images.forEach(function(img,i) { %>
+                <img src="<%=img.thumbnail%>" class="img-thumbnail" alt="">
+                <div class="form-check-inline" >
+                    <input type="checkbox"id="image-<%=i%>" name = "deleteImages[]" value="<%= img.filename %>">
+                </div>
+                <label for="image-<%=i%>">Delete?</label>
+                <% }) %>
+            </div>
+            <button type="submit" class="btn btn-primary">Update Camp</button>
+        </form>
+        <div class="mb-5">
+            <div id="map"></div>
+        </div>
+    </div>
+</div>
+<script src="/javascripts/geolatlong.js"></script>
